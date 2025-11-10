@@ -23,10 +23,6 @@ export function Flashcard({
   const isEnToPt = direction === 'en-to-pt';
   const frontText = isEnToPt ? card.english : card.portuguese;
   const backText = isEnToPt ? card.portuguese : card.english;
-  const displayText = isFlipped ? backText : frontText;
-
-  // Show speaker icon whenever Portuguese text is displayed
-  const isShowingPortuguese = (isEnToPt && isFlipped) || (!isEnToPt && !isFlipped);
 
   return (
     <div className="w-full max-w-2xl mx-auto">

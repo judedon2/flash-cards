@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { useCallback, useRef } from 'react';
 
 /**
@@ -23,11 +24,11 @@ export function useSpeech() {
     }
 
     // Use proxy server to get Google Translate audio
-    // In development: use localhost:3001, in production: use Vercel serverless function
+    // In development: use localhost:3001/tts, in production: use Vercel serverless function /api/tts
     const encodedText = encodeURIComponent(text);
     const gender = isMale ? 'male' : 'female';
-    const baseUrl = import.meta.env.DEV ? 'http://localhost:3001' : '';
-    const proxyUrl = `${baseUrl}/api/tts?text=${encodedText}&gender=${gender}`;
+    const endpoint = import.meta.env.DEV ? 'http://localhost:3001/tts' : '/api/tts';
+    const proxyUrl = `${endpoint}?text=${encodedText}&gender=${gender}`;
 
     console.log(`Playing Google Translate TTS (${gender} voice):`, text);
 

@@ -4,7 +4,6 @@ import { useFlashcards } from '../hooks/useFlashcards';
 import { useSpeech } from '../hooks/useSpeech';
 import { Flashcard } from './Flashcard';
 import { LanguageToggle } from './LanguageToggle';
-import { VoiceGenderToggle } from './VoiceGenderToggle';
 
 interface FlashcardDeckProps {
   cards: FlashcardData[];
@@ -25,9 +24,6 @@ export function FlashcardDeck({ cards, onExit }: FlashcardDeckProps) {
     flipCard,
     toggleDirection,
     toggleBreakdown,
-    toggleVoiceGender,
-    getFrontText,
-    getBackText,
   } = useFlashcards(cards);
 
   const { speak } = useSpeech();
