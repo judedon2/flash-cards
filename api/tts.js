@@ -1,6 +1,4 @@
-const fetch = require('node-fetch');
-
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   const { text, gender } = req.query;
 
   if (!text) {
@@ -22,7 +20,8 @@ module.exports = async (req, res) => {
       throw new Error(`Google TTS returned ${response.status}`);
     }
 
-    const buffer = await response.buffer();
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
 
     res.setHeader('Content-Type', 'audio/mpeg');
     res.setHeader('Content-Length', buffer.length);
@@ -33,4 +32,4 @@ module.exports = async (req, res) => {
     console.error('TTS API error:', error);
     res.status(500).json({ error: 'Failed to fetch audio' });
   }
-};
+}
